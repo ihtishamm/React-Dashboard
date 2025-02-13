@@ -6,6 +6,8 @@ import "swiper/css/navigation";
 import "swiper/css/pagination";
 import "swiper/css/autoplay";
 import reportWebVitals from "./reportWebVitals";
+import store from './store/store';
+import { Provider } from "react-redux";
 import App from "./App";
 import { ThemeProvider } from "./context/ThemeContext";
 import { AppWrapper } from "./components/common/PageMeta";
@@ -15,12 +17,14 @@ const root = ReactDOM.createRoot(
 );
 root.render(
   <React.StrictMode>
+    <Provider store={store}>
     <AppWrapper>
       <ThemeProvider>
         <App />
       </ThemeProvider>
     </AppWrapper>
-  </React.StrictMode>
+    </Provider>
+   </React.StrictMode>
 );
 
 // If you want to start measuring performance in your app, pass a function
