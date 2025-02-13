@@ -32,7 +32,7 @@ const navItems: NavItem[] = [
   {
     name: "Product",
     icon: <TableIcon />,
-    path: "/product",
+    path: "/project",
   },
 ];
 

@@ -12,6 +12,7 @@ import NotFound from './pages/OtherPage/NotFound';
 import BasicTables from './pages/Tables/BasicTables';
 import UserProfiles from './pages/UserProfiles';
 import ProtectedRoute from './layout/ProtectedRoutes';
+import Project from './pages/Project';
 
 const App: React.FC = () => {
   const dispatch = useDispatch();
@@ -53,7 +54,7 @@ const App: React.FC = () => {
         <Route element={<ProtectedRoute><AppLayout /></ProtectedRoute>}>
           <Route index path="/" element={<Ecommerce />} />
           <Route path="/profile" element={<UserProfiles />} />
-          <Route path="/product" element={<BasicTables />} />
+          <Route path="/project" element={<Project />} />
         </Route>
         <Route element={<AuthLayout />}>
           <Route path="/signin" element={<SignIn />} />

@@ -32,7 +32,7 @@ export default function SignUp() {
   const handleSignUp = async (e: React.FormEvent) => {
     e.preventDefault();
     if (email && password) {
-      await dispatch(registerWithEmail(email, password));
+      await dispatch(registerWithEmail(firstName, lastName,email, password));
     }
   };
 

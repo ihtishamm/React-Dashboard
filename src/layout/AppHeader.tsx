@@ -142,7 +142,7 @@ const AppHeader: React.FC = () => {
           
             <ThemeToggleButton />
            
-            <NotificationDropdown />
+            {/* <NotificationDropdown /> */}
             
           </div>
         

@@ -1,12 +1,14 @@
 import React, { useState } from "react";
 import { DropdownItem } from "../ui/dropdown/DropdownItem";
 import { Dropdown } from "../ui/dropdown/Dropdown";
-import { Link } from "react-router";
 import {useAppDispatch} from "../../store/hook";
 import {useNavigate } from 'react-router-dom';
 import { logout } from '../../actions/authActions';
+import { useSelector } from 'react-redux';
+import { RootState } from '../../store/store';
 
-export default function UserDropdown() {
+export default function UserDropdown() { 
+  const user = useSelector((state: RootState) => state.auth.user);
   const dispatch = useAppDispatch();
   const navigate = useNavigate();
 
@@ -35,7 +37,7 @@ export default function UserDropdown() {
         </span>
 
         <span className="block mr-1 font-medium text-theme-sm">
-          Emirhan Boruch
+          {user?.displayName || "DKC"}
         </span>
 
         <svg

@@ -1,8 +1,9 @@
 
 import { auth, googleProvider } from '../firebaseConfig';
-import { signInWithEmailAndPassword, createUserWithEmailAndPassword, signInWithPopup, signOut } from 'firebase/auth';
+import { signInWithEmailAndPassword, createUserWithEmailAndPassword, signInWithPopup, signOut, updateProfile} from 'firebase/auth';
 import { setUser, setLoading, setError } from '../store/authSlice';
 import {AppDispatch} from '../store/store';
+
 
 export const loginWithEmail = (email: string, password: string) => async (dispatch: AppDispatch) => {
   dispatch(setLoading(true));
@@ -16,11 +17,16 @@ export const loginWithEmail = (email: string, password: string) => async (dispat
   }
 };
 
-export const registerWithEmail = (email: string, password: string) => async (dispatch: AppDispatch) => {
+export const registerWithEmail = (firstName: string, lastName: string, email: string, password: string) => async (dispatch: AppDispatch) => {
   dispatch(setLoading(true));
   try {
     const userCredential = await createUserWithEmailAndPassword(auth, email, password);
-    dispatch(setUser(userCredential.user));
+    const user = userCredential.user;
+    const displayName = `${firstName} ${lastName}`;
+
+    await updateProfile(user, { displayName });
+
+    dispatch(setUser({ ...user, displayName }));
   } catch (error: any) {
     dispatch(setError(error.message));
   } finally {
